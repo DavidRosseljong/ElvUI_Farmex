@@ -18,6 +18,10 @@ end
 --Default options
 P["Farmex"] = {
 	['minimapSize'] = 300,
+	['minimapX'] = 0,
+	['minimapY'] = 400,
+	['minimapPositionPoint'] = "CENTER",
+	['minimapPositionAttachTo'] = "UIParent",
 }
 
 -- misc
@@ -45,7 +49,7 @@ function Farmex_Toggle()
 		
 		Minimap:SetSize(E.db.Farmex.minimapSize, E.db.Farmex.minimapSize)
 		Minimap:ClearAllPoints()
-		Minimap:SetPoint("CENTER", "UIParent", 0, 400)
+		Minimap:SetPoint(E.db.Farmex.minimapPositionPoint, E.db.Farmex.minimapPositionAttachTo, E.db.Farmex.minimapX, E.db.Farmex.minimapY)
 		farm = true
 	else
 		if MinimapMover then
@@ -89,13 +93,13 @@ function Farmex:InsertOptions()
 			info = {
 				order = 200,
 				type = "group",
-				name = "Minimap",
+				name = "Minimap Settings",
 				args = {
 					keybind	= {
 						type	= "keybinding",
 						order	= 1,
 						name	= BINDING_NAME_FARMEX_TOGGLE,
-						desc	= "You may also use |cff69ccf0/farming|r command for this action.",
+						desc	= "You may also use |cff69ccf0/farm|r command for this action.",
 						get		= function() return GetBindingKey("FARMEX_TOGGLE") end,
 						set		= function(_, value) SetBinding(value, "FARMEX_TOGGLE"); SaveBindings(GetCurrentBindingSet()) end,
 					},
@@ -103,10 +107,52 @@ function Farmex:InsertOptions()
 						type	= "range",
 						order	= 2,
 						name	= "Minimap Size",
-						desc	= "Size, in pixels, of the minimap while in farming mode.",
+						desc	= "Size of the minimap while in farm mode.",
 						get		= function() return E.db.Farmex.minimapSize end,
 						set		= function(_, value) E.db.Farmex.minimapSize = value end,
-						min = 200, max = 750, step = 10,
+						min = 100, max = 1000, step = 10
+					},
+					FarmexSpacer1 = {
+						order = 3,
+						type = "description",
+						name = "\n",
+					},
+					-- minimapPositionPointSettings	= {
+					-- 	type	= "select",
+					-- 	order	= 4,
+					-- 	name	= "Minimap Anchor Position",
+					-- 	desc	= "Select the anchor point for the minimap while in farm mode.",
+					-- 	get		= function() return E.db.Farmex.minimapPositionPoint end,
+					-- 	set		= function(_, value) E.db.Farmex.minimapPositionPoint = value end,
+					-- 	values = {
+					-- 		TOPL		= "TOPLEFT",
+					-- 		TOP			= "TOP",
+					-- 		TOPR 		= "TOPRIGHT",
+					-- 		RIGHT 	= "RIGHT",
+					-- 		CENTER 	= "CENTER",
+					-- 		LEFT		= "LEFT",
+					-- 		BOTR		= "BOTTOMRIGHT",
+					-- 		BOT			= "BOTTOM",
+					-- 		BOTL		= "BOTTOMLEFT"
+					-- 	}
+					-- },
+					minimapPositionXSettings	= {
+						type	= "range",
+						order	= 5,
+						name	= "Minimap X Position",
+						desc	= "Change the position of the minimap while in farm mode.",
+						get		= function() return E.db.Farmex.minimapX end,
+						set		= function(_, value) E.db.Farmex.minimapX = value end,
+						min = 0, max = 500, step = 1
+					},
+					minimapPositionYSettings	= {
+						type	= "range",
+						order	= 6,
+						name	= "Minimap Y Position",
+						desc	= "Change the position of the minimap while in farm mode.",
+						get		= function() return E.db.Farmex.minimapY end,
+						set		= function(_, value) E.db.Farmex.minimapY = value end,
+						min = 0, max = 500, step = 1
 					},
 				},
 			},
