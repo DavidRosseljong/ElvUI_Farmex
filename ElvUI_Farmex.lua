@@ -51,6 +51,7 @@ function Farmex_Toggle()
 		Minimap:ClearAllPoints()
 		Minimap:SetPoint(E.db.Farmex.minimapPositionPoint, E.db.Farmex.minimapPositionAttachTo, E.db.Farmex.minimapX, E.db.Farmex.minimapY)
 		farm = true
+		MinimapPanel:Hide();
 	else
 		if MinimapMover then
 			MinimapMover:SetSize(miniMoverSize, miniMoverSize)
@@ -58,6 +59,7 @@ function Farmex_Toggle()
 		Minimap:SetSize(minimapSize, minimapSize)
 		Minimap:SetPoint(minimapPosition)
 		farm = false
+		MinimapPanel:Show();
 	end
 	
 	if AurasMover and (E.Movers and not E.Movers["AurasMover"] or not E.Movers) then
