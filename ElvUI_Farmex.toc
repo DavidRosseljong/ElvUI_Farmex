@@ -1,0 +1,16 @@
+## Interface: 90001
+## Author: Valixx
+## Title: |cff1784d1ElvUI|r Farmex
+## Version: 1.0
+## Notes: Adds a farm mode to ElvUI.
+## RequiredDeps: ElvUI
+
+## X-Author-Faction: Alliance
+## X-Author-Server: Aegwynn
+## X-Category: ElvUI, Gathering
+## X-License: GNU General Public License 3
+## X-Email: valixx AT live DOT de
+## X-Website: https://valixx-online.de
+## X-Credits: Valixx
+
+ElvUI_Farmex.lua
